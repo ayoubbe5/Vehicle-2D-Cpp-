@@ -18,21 +18,34 @@ zumindest für größere Arbeiten. Pro Änderung sind dabei immer folgende Daten
 // 2016-06-01; AL; Logik für Zust. UP korrigiert, weil bei Eingabe ‘e‘ fehlerhaft.
 Sinnvoll ist auch die Angabe: Warum wurde etwas geändert – das ist aber hier keine Muss.
 C++P3 Anforderung 2: Umbau auf Klassen
+
+
 Programmieren sie das Fahrzeug (Vehicle) und den Zustandsautomaten jeweils als eigene Klasse
 (auch wenn beim Zustandsautomaten nicht viel dazu gehört).
-a) Programmieren sie dann eine Klasse „SmVehicle“, die ein Zustands-Objekt und sein FahrzeugObjekt zusammen bringt. In dieser Klasse soll fast nichts enthalten sein, außer zweier Zeiger: Eines
+
+
+a) 
+
+Programmieren sie dann eine Klasse „SmVehicle“, die ein Zustands-Objekt und sein FahrzeugObjekt zusammen bringt. In dieser Klasse soll fast nichts enthalten sein, außer zweier Zeiger: Eines
 zum zugehörigen Fahrzeug und eines zum zugehörigen Automaten. Im Konstruktor von SmVehicle
 kümmern sie sich darum, dass Platz für die Objekte auf dem Heap reserviert wird. (Alternativ ist ihnen
 offen gestellt, das Vehicle und Statemachine direkt in SmVehicle als Komponente einzubauen, statt
 über Zeiger).
-b) Legen sie das SmVehicle-Objekt dann nicht mehr Dateilokal, sondern in der main.cpp an. Das zieht
+
+
+b) 
+
+Legen sie das SmVehicle-Objekt dann nicht mehr Dateilokal, sondern in der main.cpp an. Das zieht
 einige Veränderungen nach sich und es kann leicht undurchschaubare Probleme geben – nutzen sie die
 Praktikumsstunden zur Unterstützung. Nicht vergessen: Damit auch in main die Klasse SmVehicle
 bekannt ist, verschieben sie die class SmVehicle{….}; in “smvehicle.h“ und includen diese.
 Die Klasse SmVehicle wird später übrigens auch die Brücke zum GUI schlagen. Sie sollten aber am
 besten – zum Testen ihrer Umstellung – auch ihr Projekt mit der alten Konsolenausgabe noch einmal
 lauffähig bekommen!
-c) Damit im Zustandsautomaten beim richtigen Fahrzeug der Beschleunigungsbefehl aufgerufen wird,
+
+c) 
+
+Damit im Zustandsautomaten beim richtigen Fahrzeug der Beschleunigungsbefehl aufgerufen wird,
 muss jedes Zustandsautomaten-Objekt „sein Fahrzeug“ kennen (auch wenn bei C++P3 weiterhin nur
 ein Fahrzeug gefordert ist). Sie können dies elegant lösen, indem sie im Automaten ein Zeiger auf
 „sein Fahrzeug“ anlegen. Tipp: Diesen Zeiger können sie z.B. im Konstruktor des Zustandsautomaten
@@ -47,6 +60,8 @@ Zustände kein #define oder const int nutzen, sondern eine enumeration.
 
 d) Zur Vorbereitung der „Schnittstelle“ von SmVehicle zur GUI müssen sie in SmVehicle folgende
 Member-Funktionen programmieren:
+
+
 double getCppVehicleX( void); //liefert Real-Teil der Position
 double getCppVehicleY( void); //liefert Imag-Teil der Position
 void reactOnDriverInput(char driverInput);//…bald:QString statt char
@@ -73,6 +88,9 @@ stehen lassen. Nutzen Sie in simulate aber unbedingt komplexe Rechenfunktionen b
 Operationen, statt jeweils einzeln auf Real- und Imag.-Anteil zu rechnen! Das soll etwa so
 aussehen: s= s + v … und nicht so: s.real= s.real +…; s.imag= s.imag + ….;
 Das Programm muss sich danach genauso verhalten wie zuvor ohne die komplexen Zahlen.
+ 
+ 
+ 
 b) Legen Sie nun neben engineAccel() und engineDecel() weitere Funktionen engineUp() und
 engineDown() an, die den Imag.teil der Kraft setzen. (Stellen sie sich einen Raketenantrieb
 vor, der den aktuellen Schub in eine der vier Himmelrichtungen ausstoßen kann. Wenn das
@@ -86,15 +104,19 @@ mit einem Breakpoint in simulatePhysics). Sie sollten jetzt das Fahrzeug in der 
 können – auch wenn die Graphik dazu noch fehlt. 
 
 C++P3 Anforderung 4: GUI mit Zielfahrt
+
+
 a) Binden sie die UI an ihre Fahrzeugsimulation an – sobald das HandsOnTraining dazu
 stattgefunden hat. Außerdem sollte der Klassenumbau zuvor erledigt sein. Die Zielfahrt
 können sie dann schon eindimensional vorbereiten. Ganz einfach: Sobald das Fahrzeug soll
 eine bestimmte X-Koordinate erreicht hat, ist das Spiel gewonnen. Überlegen sie sich, wie das
 „gerechnet“ werden kann. (Diese Berechnung werden wir zur Vereinfachung in QML
 (~JavaScript) programmieren – Hilfe dazu bitte im Praktikum erfragen.)
+
+
 b) Sobald der Umbau auf komplexe Zahlen vom Kommilitonen verfügbar und getestet ist,
 bauen sie das Spiel um, auf eine Zielposition in der Ebene. Alles weiter, z.B. mehrere Ziele
 anzufahren, sei ihnen überlassen. Sobald das Ziel erreicht ist, soll dem Zustandsautomaten ein
 ‘e‘ (für Ende) übermittelt werden; bei der GUI-Version soll dadurch aber nicht das Programm
 beendet werden (z.B. via exit()), sondern nur in den Zustand ENG_OFF verzweigt werden.
-Das
+
